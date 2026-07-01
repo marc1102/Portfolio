@@ -157,6 +157,10 @@ header {
     text-transform: uppercase;
 }
 
+.her{
+    text-decoration: none;
+}
+
 menu {
     display: flex;
     list-style: none;
