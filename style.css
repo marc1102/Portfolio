@@ -650,7 +650,7 @@ footer {
     position: fixed;
     inset: 0;
     background: var(--black);
-    z-index: 300;
+    z-index: 500;
     flex-direction: column;
     align-items: center;
     justify-content: center;
