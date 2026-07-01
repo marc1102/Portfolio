@@ -8,20 +8,37 @@
 </head>
 <body>
 
+    <!-- MENU MOBILE -->
+    <nav class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+        <button class="mobile-close" id="menuClose" aria-label="Fermer le menu">✕</button>
+        <a href="#welcome" onclick="closeMenu()">Accueil</a>
+        <a href="#about" onclick="closeMenu()">À propos</a>
+        <a href="#education" onclick="closeMenu()">Éducation</a>
+        <a href="#experience" onclick="closeMenu()">Expérience</a>
+        <a href="#projects" onclick="closeMenu()">Projets</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+    </nav>
+
     <!-- HEADER -->
     <header>
-        <h2 class="logo"><a href="#hero" class="her">PORTFO-ME</a></h2>
+        <h2 class="logo"><a class="her" href="#hero">PORTFO-ME</a></h2>
         <menu>
             <a href="#welcome">Accueil</a>
-            <a href="#projects">Projets</a>
-            <a href="#experience">Expérience</a>
-            <a href="#education">Education</a>
             <a href="#about">À propos</a>
+            <a href="#education">Éducation</a>
+            <a href="#projects">Projets</a>
             <a href="#contact">Contact</a>
         </menu>
-        <button class="btn" aria-label="Basculer le mode">
-            <span class="btn-circle"></span>
-        </button>
+        <div style="display:flex;align-items:center;gap:16px;">
+            <button class="btn" aria-label="Basculer le mode">
+                <span class="btn-circle"></span>
+            </button>
+            <button class="burger" id="burgerBtn" aria-label="Ouvrir le menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
     </header>
 
     <main>
@@ -45,7 +62,7 @@
             <div class="welcome-text">
                 <h2 class="section-title">WELCOME TO<br>MY PORTFOLIO</h2>
                 <p class="section-body">Designer graphique passionné, je transforme des idées en identités visuelles fortes. Chaque projet est une opportunité de raconter une histoire à travers la couleur, la forme et la typographie.</p>
-                <a href="#introduction" class="cta">En savoir plus <span class="cta-arrow">&#8594;</span></a>
+                <a href="#about" class="cta">En savoir plus <span class="cta-arrow">&#8594;</span></a>
             </div>
             <div class="welcome-images">
                 <img src="images/portrait-02.jpg" alt="Portrait studio, détail" class="welcome-img-wide">
@@ -178,7 +195,7 @@
                         <span class="contact-icon">&#9993;</span>
                         <div>
                             <h4>Email</h4>
-                            <p>lonzoverenako02@gmail.com</p>
+                            <p>marc.lonzo@gmail.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -224,5 +241,42 @@
         <span>&copy; 2026 Marc Lonzo</span>
     </footer>
 
+    <script>
+        // Menu burger
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuClose = document.getElementById('menuClose');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            burgerBtn.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            burgerBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        burgerBtn.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+
+        // Fermer avec Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeMenu();
+        });
+
+        // Header : réduire au scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.style.padding = '';
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }, { passive: true });
+    </script>
 </body>
 </html>

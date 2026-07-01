@@ -604,11 +604,11 @@ menu a:hover::after {
 
 .thanks-img {
     width: 100%;
-    max-width: 600px;
+    max-width: 450px;
     height: 420px;
     object-fit: cover;
     object-position: top center;
-    margin-top: 20px;
+    margin-top: 0px;
     filter: grayscale(100%) contrast(1.1);
 }
 
@@ -625,52 +625,282 @@ footer {
 }
 
 /* ============================
-   RESPONSIVE
+   MENU BURGER (mobile)
+   ============================ */
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+}
+
+.burger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--white);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.mobile-menu.open {
+    display: flex;
+}
+
+.mobile-menu a {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--white);
+    letter-spacing: 1px;
+}
+
+.mobile-menu a:hover {
+    opacity: 0.5;
+}
+
+.mobile-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 32px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/* ============================
+   RESPONSIVE — LARGE (1400px+)
+   ============================ */
+@media (min-width: 1400px) {
+    .title { font-size: 220px; }
+    .section-title { font-size: 72px; }
+    .thanks-title { font-size: 160px; }
+    main > section { padding: 160px 120px; }
+    header { padding: 40px 120px; }
+    footer { padding: 35px 120px; }
+}
+
+/* ============================
+   RESPONSIVE — TABLETTE (1100px)
    ============================ */
 @media (max-width: 1100px) {
-    .title { font-size: 130px; }
-    .section-title { font-size: 48px; }
-    .thanks-title { font-size: 96px; }
+    /* Type */
+    .title { font-size: 110px; }
+    .section-title { font-size: 44px; }
+    .thanks-title { font-size: 80px; }
+    .thanks-sub { font-size: 36px; }
+    .creative { font-size: 38px; }
 
-    main > section { padding: 100px 50px; }
+    /* Espacement global */
+    main > section { padding: 90px 50px; }
     header { padding: 25px 50px; }
     footer { padding: 25px 50px; }
 
-    .welcome,
-    .introduction,
-    .about,
-    .experience,
-    .contact { grid-template-columns: 1fr; }
+    /* Hero */
+    .hero-photo { max-width: 60%; }
+    .left-text { left: 50px; top: 58%; }
+    .right-text { right: 50px; top: 58%; }
+    .bottom-icons { left: 50px; bottom: 40px; }
+    .hero .website { right: 50px; bottom: 40px; }
 
-    .latest { grid-template-columns: 1fr; }
-    .latest-main-img { height: 420px; }
+    /* Sections en colonne */
+    .welcome { grid-template-columns: 1fr; gap: 50px; }
+    .introduction { grid-template-columns: 1fr; gap: 50px; }
+    .about { grid-template-columns: 1fr; gap: 50px; }
+    .experience { grid-template-columns: 1fr; gap: 50px; }
+    .contact { grid-template-columns: 1fr; gap: 50px; }
 
-    .timeline { grid-template-columns: 1fr; gap: 30px; }
-    .projects-grid { grid-template-columns: 1fr 1fr; }
+    /* Welcome images */
+    .welcome-images { grid-template-columns: 1fr 1fr; }
+    .welcome-img-wide, .welcome-img-tall { height: 360px; }
+    .welcome-img-tall { margin-top: 40px; }
+
+    /* Introduction images */
+    .intro-img-1 { height: 300px; }
+    .intro-img-2 { height: 360px; }
+
+    /* About */
+    .about-img { height: 480px; object-position: center 20%; }
+
+    /* Timeline colonne unique */
+    .timeline { grid-template-columns: 1fr; gap: 28px; }
+
+    /* Experience */
+    .experience-right { flex-direction: row; }
+    .experience-img-1, .experience-img-2 { height: 220px; width: 50%; }
+
+    /* Latest */
+    .latest { grid-template-columns: 1fr 1fr; gap: 30px; }
+    .latest-list { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+
+    /* Projects */
+    .projects-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .project-thumb { height: 260px; }
+
+    /* Contact */
+    .contact-img { height: 420px; }
+
+    /* Thanks */
+    .thanks-img { height: 340px; }
+
+    /* Education */
+    .education-image { height: 260px; }
 }
 
-@media (max-width: 640px) {
-    .title { font-size: 72px; letter-spacing: 0; }
-    .creative { font-size: 32px; margin-left: 20px; }
-    .section-title { font-size: 36px; }
-    .thanks-title { font-size: 56px; }
-    .thanks-sub { font-size: 28px; }
-
-    main > section { padding: 70px 24px; }
-    header { padding: 20px 24px; }
-    footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
-
+/* ============================
+   RESPONSIVE — PETIT TABLETTE (768px)
+   ============================ */
+@media (max-width: 768px) {
+    /* Menu burger */
     menu { display: none; }
+    .burger { display: flex; }
 
-    .hero-photo { max-width: 80%; }
-    .left-text, .right-text { position: static; text-align: center; margin-top: 20px; }
-    .hero { padding-top: 60px; }
-    .bottom-icons, .hero .website { position: static; margin-top: 20px; }
+    /* Type */
+    .title { font-size: 80px; letter-spacing: 0; }
+    .section-title { font-size: 38px; }
+    .thanks-title { font-size: 64px; letter-spacing: -1px; }
+    .creative { font-size: 32px; margin-left: 30px; }
 
-    .welcome-images,
-    .intro-images { grid-template-columns: 1fr; }
+    /* Espacement */
+    main > section { padding: 80px 36px; }
+    header { padding: 20px 36px; }
+    footer { padding: 20px 36px; }
+
+    /* Hero layout */
+    .hero { min-height: 100svh; }
+    .hero-photo {
+        max-width: 75%;
+        mask-image: linear-gradient(to bottom, black 60%, transparent 100%),
+                    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%),
+                    linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+        mask-composite: intersect;
+        -webkit-mask-composite: source-in;
+    }
+    .left-text, .right-text { top: 54%; font-size: 13px; }
+
+    /* Sections */
+    .welcome-images { grid-template-columns: 1fr; }
+    .welcome-img-wide, .welcome-img-tall { height: 400px; }
     .welcome-img-tall { margin-top: 0; }
 
+    .intro-images { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .intro-img-1 { height: 260px; margin-top: 0; }
+    .intro-img-2 { height: 320px; }
+
+    .experience-right { flex-direction: column; }
+    .experience-img-1, .experience-img-2 { height: 260px; width: 100%; }
+
+    .latest { grid-template-columns: 1fr; }
+    .latest-list { grid-column: 1; grid-template-columns: 1fr; }
+
+    .contact-grid { grid-template-columns: 1fr; gap: 24px; }
+
+    .projects-footer { flex-direction: column; gap: 20px; }
+    .projects-footer .section-body { max-width: 100%; }
+}
+
+/* ============================
+   RESPONSIVE — MOBILE (480px)
+   ============================ */
+@media (max-width: 480px) {
+    /* Type */
+    .title { font-size: 56px; }
+    .section-title { font-size: 30px; }
+    .thanks-title { font-size: 46px; }
+    .thanks-sub { font-size: 24px; }
+    .creative { font-size: 26px; margin-left: 16px; }
+    .section-body { font-size: 15px; }
+    .entry-title { font-size: 16px; }
+
+    /* Espacement */
+    main > section { padding: 60px 20px; }
+    header { padding: 18px 20px; }
+    footer { padding: 18px 20px; flex-direction: column; gap: 6px; text-align: center; }
+
+    /* Hero */
+    .hero { height: auto; min-height: 100svh; padding-top: 40px; padding-bottom: 80px; padding-left: 20px; padding-right: 20px; }
+    .hero-photo { max-width: 88%; }
+    .left-text, .right-text {
+        position: static;
+        text-align: center;
+        margin-top: 16px;
+    }
+    .bottom-icons {
+        position: static;
+        margin-top: 24px;
+        justify-content: flex-start;
+    }
+    .hero .website {
+        position: static;
+        margin-top: 12px;
+        text-align: center;
+    }
+    .hero { flex-direction: column; align-items: center; }
+
+    /* Images */
+    .welcome-img-wide, .welcome-img-tall { height: 300px; }
+    .about-img { height: 360px; }
+    .intro-img-1, .intro-img-2 { height: 200px; }
+    .education-image { height: 200px; border-radius: 20px; }
+    .latest-main-img { height: 320px; }
+    .latest-thumb { height: 160px; }
+    .contact-img { height: 340px; }
+    .thanks-img { height: 280px; }
+    .project-thumb { height: 220px; }
+    .experience-img-1, .experience-img-2 { height: 220px; }
+
+    /* CTA */
+    .cta { padding: 12px 22px; font-size: 14px; }
+
+    /* Projects */
     .projects-grid { grid-template-columns: 1fr; }
-    .contact-grid { grid-template-columns: 1fr; }
+
+    /* Latest */
+    .latest-thumbs { grid-template-columns: 1fr 1fr; }
+}
+
+/* ============================
+   RESPONSIVE — TRÈS PETIT (360px)
+   ============================ */
+@media (max-width: 360px) {
+    .title { font-size: 44px; }
+    .section-title { font-size: 26px; }
+    .thanks-title { font-size: 38px; }
+    main > section { padding: 50px 16px; }
+    header { padding: 16px; }
+    .intro-images { grid-template-columns: 1fr; }
+    .latest-thumbs { grid-template-columns: 1fr; }
+}
+
+/* Header compact au scroll */
+header.scrolled {
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+/* Accessibilité : focus visible */
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
 }
