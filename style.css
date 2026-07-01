@@ -296,8 +296,8 @@ menu a:hover::after {
     font-weight: bolder;
 }
 
-.left-text { left: 80px; }
-.right-text { right: 80px; }
+.left-text { left: 50px; }
+.right-text { right: 50px; }
 
 .bottom-icons {
     position: absolute;
