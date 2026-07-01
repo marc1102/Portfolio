@@ -7,6 +7,7 @@
     box-sizing: border-box;
 }
 
+/* Mode sombre (défaut) */
 :root {
     --black: #000000;
     --white: #ffffff;
@@ -14,6 +15,43 @@
     --gray-dark: #1a1a1a;
     --line: #3a3a3a;
     --off-white: #eaeaea;
+
+    /* Toggle button */
+    --toggle-bg: #ffffff;
+    --toggle-circle: #000000;
+    --toggle-circle-pos: flex-end;
+}
+
+/* Mode clair */
+[data-theme="light"] {
+    --black: #f0ede8;
+    --white: #111111;
+    --gray-light: #555555;
+    --gray-dark: #e0dcd6;
+    --line: #cccccc;
+    --off-white: #222222;
+
+    --toggle-bg: #111111;
+    --toggle-circle: #f0ede8;
+    --toggle-circle-pos: flex-start;
+}
+
+/* Transition douce sur tous les éléments lors du changement de thème */
+*,
+*::before,
+*::after {
+    transition:
+        background-color 0.35s ease,
+        color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+/* Bloquer la transition au chargement initial */
+.no-transition *,
+.no-transition *::before,
+.no-transition *::after {
+    transition: none !important;
 }
 
 html {
@@ -108,6 +146,7 @@ header {
     z-index: 100;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(8px);
+    /* Mode clair : fond blanc semi-transparent */
     border-bottom: 1px solid var(--line);
 }
 
@@ -116,10 +155,6 @@ header {
     font-weight: 700;
     letter-spacing: 2px;
     text-transform: uppercase;
-}
-
-.her{
-    text-decoration: none;
 }
 
 menu {
@@ -152,24 +187,44 @@ menu a:hover::after {
 }
 
 .btn {
-    background: var(--white);
-    border: none;
-    width: 50px;
-    height: 26px;
+    background: var(--toggle-bg);
+    border: 1px solid var(--line);
+    width: 52px;
+    height: 28px;
     border-radius: 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     padding: 3px;
-    justify-content: flex-end;
+    justify-content: var(--toggle-circle-pos);
+    /* La transition est gérée globalement, mais on précise pour le justify */
+    transition:
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        justify-content 0s;
+    position: relative;
 }
 
 .btn-circle {
     width: 20px;
     height: 20px;
-    background: var(--black);
+    background: var(--toggle-circle);
     border-radius: 50%;
     display: block;
+    position: absolute;
+    /* Animation du cercle : gauche = clair, droite = sombre */
+    left: 4px;
+    transition: left 0.35s ease, background-color 0.35s ease;
+}
+
+/* En mode sombre : cercle à droite */
+:root .btn-circle {
+    left: calc(100% - 24px);
+}
+
+/* En mode clair : cercle à gauche */
+[data-theme="light"] .btn-circle {
+    left: 4px;
 }
 
 /* ============================
@@ -604,11 +659,11 @@ menu a:hover::after {
 
 .thanks-img {
     width: 100%;
-    max-width: 450px;
+    max-width: 600px;
     height: 420px;
     object-fit: cover;
     object-position: top center;
-    margin-top: 0px;
+    margin-top: 60px;
     filter: grayscale(100%) contrast(1.1);
 }
 
@@ -650,7 +705,7 @@ footer {
     position: fixed;
     inset: 0;
     background: var(--black);
-    z-index: 500;
+    z-index: 200;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -663,8 +718,8 @@ footer {
 
 .mobile-menu a {
     font-family: 'Arial Black', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
+    font-size: 40px;
+    font-weight: 900;
     text-transform: uppercase;
     text-decoration: none;
     color: var(--white);
@@ -903,4 +958,65 @@ a:focus-visible,
 button:focus-visible {
     outline: 2px solid var(--white);
     outline-offset: 4px;
+}
+
+/* ================================
+   DARK / LIGHT MODE — ajustements
+   ================================ */
+
+/* Header fond adaptatif */
+[data-theme="light"] header {
+    background: rgba(240, 237, 232, 0.92);
+}
+
+/* Menu mobile fond adaptatif */
+[data-theme="light"] .mobile-menu {
+    background: var(--black);
+}
+
+/* Images : en mode clair, on atténue légèrement le contraste */
+[data-theme="light"] img {
+    filter: grayscale(100%) contrast(0.9) brightness(1.05);
+}
+
+/* Les images de hero gardent leur force */
+[data-theme="light"] .hero-photo {
+    filter: grayscale(100%) contrast(1.0);
+    mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+/* Icônes hero en mode clair */
+[data-theme="light"] .icon-circle,
+[data-theme="light"] .icon-play {
+    border-color: var(--white);
+    color: var(--white);
+}
+
+/* Burger bars couleur adaptative */
+[data-theme="light"] .burger span {
+    background: var(--white);
+}
+
+/* CTA border en mode clair */
+[data-theme="light"] .cta {
+    border-color: var(--white);
+    color: var(--white);
+}
+
+[data-theme="light"] .cta:hover {
+    background: var(--white);
+    color: var(--black);
+}
+
+/* Contact icons */
+[data-theme="light"] .contact-icon {
+    border-color: var(--white);
+    color: var(--white);
+}
+
+/* Timeline border */
+[data-theme="light"] .timeline-item,
+[data-theme="light"] .latest-item {
+    border-top-color: var(--line);
 }

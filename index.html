@@ -21,7 +21,7 @@
 
     <!-- HEADER -->
     <header>
-        <h2 class="logo"><a class="her" href="#hero">PORTFO-ME</a></h2>
+        <h2 class="logo">PORTFO-ME</h2>
         <menu>
             <a href="#welcome">Accueil</a>
             <a href="#about">À propos</a>
@@ -195,7 +195,7 @@
                         <span class="contact-icon">&#9993;</span>
                         <div>
                             <h4>Email</h4>
-                            <p>marc.lonzo@gmail.com</p>
+                            <p>marc.lonzo@lonzographicdesigner.com</p>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -216,7 +216,7 @@
                         <span class="contact-icon">&#9742;</span>
                         <div>
                             <h4>Téléphone</h4>
-                            <p>+261 37 77 667 45</p>
+                            <p>+261 XX XXX XXXX</p>
                         </div>
                     </div>
                 </div>
@@ -242,7 +242,9 @@
     </footer>
 
     <script>
-        // Menu burger
+        // ================================
+        // MENU BURGER
+        // ================================
         const burgerBtn = document.getElementById('burgerBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const menuClose = document.getElementById('menuClose');
@@ -262,21 +264,55 @@
         burgerBtn.addEventListener('click', openMenu);
         menuClose.addEventListener('click', closeMenu);
 
-        // Fermer avec Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeMenu();
         });
 
-        // Header : réduire au scroll
+        // ================================
+        // HEADER COMPACT AU SCROLL
+        // ================================
         const header = document.querySelector('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 60) {
-                header.style.padding = '';
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
         }, { passive: true });
+
+        // ================================
+        // DARK / LIGHT MODE TOGGLE
+        // ================================
+        const toggleBtn = document.querySelector('.btn');
+        const btnCircle = document.querySelector('.btn-circle');
+
+        // Lire la préférence sauvegardée ou celle du système
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        let isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+
+        function applyTheme(dark) {
+            if (dark) {
+                document.documentElement.removeAttribute('data-theme');
+                toggleBtn.setAttribute('aria-label', 'Passer en mode clair');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                toggleBtn.setAttribute('aria-label', 'Passer en mode sombre');
+            }
+            localStorage.setItem('theme', dark ? 'dark' : 'light');
+        }
+
+        // Appliquer au chargement sans transition (évite le flash)
+        document.documentElement.classList.add('no-transition');
+        applyTheme(isDark);
+        requestAnimationFrame(() => {
+            document.documentElement.classList.remove('no-transition');
+        });
+
+        toggleBtn.addEventListener('click', () => {
+            isDark = !isDark;
+            applyTheme(isDark);
+        });
     </script>
 </body>
 </html>
