@@ -288,14 +288,16 @@ menu a:hover::after {
 .left-text,
 .right-text {
     position: absolute;
-    top: 60%;
-    font-size: 14px;
+    top: 65%;
+    font-size: 20px;
     letter-spacing: 0.5px;
     z-index: 5;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
 }
 
-.left-text { left: 80px; }
-.right-text { right: 80px; }
+.left-text { left: 250px; }
+.right-text { right: 250px; }
 
 .bottom-icons {
     position: absolute;
@@ -663,11 +665,11 @@ menu a:hover::after {
 
 .thanks-img {
     width: 100%;
-    max-width: 600px;
+    max-width: 400px;
     height: 420px;
     object-fit: cover;
     object-position: top center;
-    margin-top: 60px;
+    margin-top: 0px;
     filter: grayscale(100%) contrast(1.1);
 }
 
